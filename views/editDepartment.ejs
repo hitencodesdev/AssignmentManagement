@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    form::before {
+        content: 'Edit Department';
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    form > input[type="text"] {
+        width: 100%;
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #2d3748;
+        transition: all 0.3s ease;
+        background: white;
+    }
+
+    form > input[type="text"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    form > button {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+    }
+
+    form > button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    form > button:active {
+        transform: translateY(-1px);
+    }
+
+    /* Hide the inline text labels and create styled labels */
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Style for label text that appears before inputs */
+    form > input[type="text"]:nth-of-type(1)::placeholder {
+        color: #a0aec0;
+    }
+
+    form > input[type="text"]:nth-of-type(2)::placeholder {
+        color: #a0aec0;
+    }
+
+    form > input[type="text"]:nth-of-type(3)::placeholder {
+        color: #a0aec0;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 20px 10px;
+        }
+
+        form {
+            padding: 30px 20px;
+        }
+
+        form::before {
+            font-size: 24px;
+        }
+
+        form > input[type="text"] {
+            padding: 12px 15px;
+            font-size: 15px;
+        }
+
+        form > button {
+            padding: 14px;
+            font-size: 16px;
+        }
+    }
+</style>
+<body>
+    <form action="/department/update/<%= data._id %>" method="post">
+        Name:<input type="text" name="name" value="<%= data.name %>">
+        Type:<input type="text" name="type" value="<%= data.type %>">
+        Address:<input type="text" name="address" value="<%= data.address %>">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

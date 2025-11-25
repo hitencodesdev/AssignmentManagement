@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    form::before {
+        content: 'Edit User';
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    form > input[type="text"],
+    form > input[type="email"],
+    form > input[type="tel"],
+    form > select {
+        width: 100%;
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #2d3748;
+        transition: all 0.3s ease;
+        background: white;
+    }
+
+    form > input[type="text"]:focus,
+    form > input[type="email"]:focus,
+    form > input[type="tel"]:focus,
+    form > select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    form > input[type="text"]:disabled,
+    form > input[type="email"]:disabled,
+    form > input[type="tel"]:disabled {
+        background: #f7fafc;
+        color: #718096;
+        cursor: not-allowed;
+    }
+
+    form::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    /* Label styling using pseudo-elements for better positioning */
+    form > input[type="text"]:nth-of-type(1)::before {
+        content: 'Name';
+    }
+
+    /* Custom labels */
+    form > input[type="text"]:nth-of-type(1) {
+        margin-top: 30px;
+    }
+
+    form > input[type="text"]:nth-of-type(1)::placeholder {
+        content: 'Name';
+    }
+
+    form > br {
+        display: none;
+    }
+
+    form > button {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+    }
+
+    form > button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    form > button:active {
+        transform: translateY(-1px);
+    }
+
+    /* Custom styling for select dropdown */
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        padding-right: 40px;
+    }
+
+    /* Label text before inputs */
+    form > input[type="text"]:nth-of-type(1)::before,
+    form > input[type="email"]::before,
+    form > input[type="text"]:nth-of-type(2)::before,
+    form > input[type="tel"]::before,
+    form > select::before {
+        display: block;
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+
+    /* Better approach - wrap labels */
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 20px 10px;
+        }
+
+        form {
+            padding: 30px 20px;
+        }
+
+        form::before {
+            font-size: 24px;
+        }
+
+        form > input[type="text"],
+        form > input[type="email"],
+        form > input[type="tel"],
+        form > select {
+            padding: 12px 15px;
+            font-size: 15px;
+        }
+
+        form > button {
+            padding: 14px;
+            font-size: 16px;
+        }
+    }
+</style>
+<body>
+    <form action="/users/update/<%= data._id %>" method="post">
+    Name:<input type="text" name="name" value="<%= data.name %>"><br>
+    Email:<input type="email" name="email" value="<%= data.email %>"><br>
+    Password:<input type="text"  name="password" value="<%= data.password %>"><br>
+    Phone:<input type="tel" name="phone" value="<%= data.phone %>"><br>
+    Department:<select name="dept" id="" value="<%= data.dept %>"><br>
+     <% dept.forEach((val)=> { %>
+      <option value="<%= val.name %>"><%= val.name %></option>
+     <% }) %>
+    </select><br>
+    Role<input name="role" id="" value="<%= data.role %>" disabled><br>
+    <button type="submit">Add User</button>
+   </form>
+</body>
+</html>

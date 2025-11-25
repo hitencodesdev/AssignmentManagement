@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Select Professor</th>
+                <th>Status</th>
+                <th>Submitted Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach((val)=> { %>
+                <% if (val.status=='draft') { %>
+                 <tr>
+                <td><%= val.title %></td>
+                <td><%= val.category %></td>
+                <td>
+                    <select name="professor">
+                       <% prof.forEach((value)=> { %>
+                       <option value="<%= val.name %>"><%= value.name %></option>
+                       <% }) %> 
+                    </select>
+                </td>
+                 <td><button><a href="/assignments/submitAssignment/<%= val._id %>">submit for review</a></button></td>
+                <td><%= val.createdAt %></td>
+            </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

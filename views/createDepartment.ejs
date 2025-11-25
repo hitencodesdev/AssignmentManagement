@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+
+    #search {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        display: block;
+        padding: 15px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        background: white;
+        color: #2d3748;
+        transition: all 0.3s ease;
+    }
+
+    #search:focus {
+        outline: none;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+
+    #search::placeholder {
+        color: #a0aec0;
+    }
+
+    form {
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        align-items: end;
+    }
+
+    form > input[type="text"] {
+        padding: 12px 15px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #2d3748;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    form > input[type="text"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    form::before {
+        content: 'Name:';
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    form > :nth-child(2)::before {
+        content: 'Type:';
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    form > :nth-child(3)::before {
+        content: 'Address:';
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    form > button {
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    form > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    table {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border-collapse: collapse;
+        border: none;
+    }
+
+    thead {
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    }
+
+    thead tr th {
+        color: white;
+        padding: 20px 15px;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        border: none;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+
+    tbody tr:hover {
+        background: #f7fafc;
+        transform: scale(1.01);
+    }
+
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    tbody td {
+        padding: 18px 15px;
+        color: #2d3748;
+        font-size: 15px;
+        border: none;
+    }
+
+    tbody td:nth-child(4) {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    tbody td a {
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    tbody td a[href*="editDepartment"] {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        color: white;
+    }
+
+    tbody td a[href*="editDepartment"]:hover {
+        background: linear-gradient(135deg, #38a169, #2f855a);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+    }
+
+    tbody td a[href*="deleteDepartment"] {
+        background: linear-gradient(135deg, #f56565, #e53e3e);
+        color: white;
+    }
+
+    tbody td a[href*="deleteDepartment"]:hover {
+        background: linear-gradient(135deg, #e53e3e, #c53030);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(245, 101, 101, 0.4);
+    }
+
+    body > a {
+        display: inline-block;
+        padding: 12px 30px;
+        margin: 0 10px;
+        background: white;
+        color: #667eea;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    body > a:hover {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    body > a:first-of-type {
+        margin-left: calc(50% - 600px);
+    }
+
+    @media (max-width: 768px) {
+        form {
+            grid-template-columns: 1fr;
+            padding: 20px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+
+        thead tr th {
+            padding: 15px 10px;
+            font-size: 12px;
+        }
+
+        tbody td {
+            padding: 12px 10px;
+            font-size: 13px;
+        }
+
+        tbody td:nth-child(4) {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        tbody td a {
+            width: 100%;
+            text-align: center;
+        }
+
+        body > a:first-of-type {
+            margin-left: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 20px 10px;
+        }
+
+        table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    }
+</style>
+<body>
+    <input type="text" placeholder="Search department by name" id="search">
+    <form action="/department/add" method="post">
+        Name:<input type="text" name="name">
+        Type:<input type="text" name="type">
+        Address:<input type="text" name="address">
+        <button type="submit">Add</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Actions</th>
+                <th>Number of Users</th>
+            </tr>
+        </thead>
+        <tbody>
+    <% data.forEach((val)=>{ %>
+        <tr>
+         <td><%= val.name %></td>
+         <td><%= val.type %></td>
+         <td><a href="/department/edit/<%= val._id %>">Edit</a> <a href="/department/delete/<%= val._id %>">Delete</a></td>
+         <td><%= val.users %></td>
+        </tr>
+    <% }) %>
+        </tbody>
+    </table>
+    <a href="/department/list?page=<%= currPage-1 %>">prev</a>  <a href="/department/list?page=<%= currPage+1 %>">next</a>
+</body>
+<script>
+ document.getElementById("search").addEventListener("input",()=>
+ {
+    fetch('/filterDepartment',{
+        method:"POST",
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({data:document.getElementById("search").value})
+    })
+    .then((res)=>res.json())
+    .then((data)=>
+{
+    document.querySelector('tbody').innerHTML=""
+    data.data.forEach((val)=>
+{
+    let tr=document.createElement("tr")
+    let name=document.createElement("td");
+    let type=document.createElement("td");
+    let address=document.createElement("td");
+    let actions=document.createElement("td")
+    let edit=document.createElement('a')
+    let remove=document.createElement("a")
+    let users=document.createElement("td")
+    name.innerText=val.name
+    type.innerText=val.type
+    address.innerText=val.address
+    users.innerText=val.users || 0
+    edit.innerText="edit"
+    remove.innerText="remove"
+    edit.href=`/editDepartment/${val._id}`
+    remove.href=`/deleteDepartment/${val._id}`
+    actions.append(edit)
+    actions.append(remove)
+    tr.append(name)
+    tr.append(type)
+    tr.append(actions)
+    tr.append(users)
+    document.querySelector('tbody').append(tr)
+})
+})
+ })
+</script>
+</html>

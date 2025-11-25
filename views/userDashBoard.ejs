@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex;gap: 20px;">
+    <div>
+        <h3>Navigation</h3>
+        <h4>DashBoard</h4>
+        <h4><a href="/assignments/allAssignments">All Assignments</a></h4>
+        <h4>Profile</h4>
+    </div>
+    <div>
+        <h2>Assignment DashBoard</h2>
+        <div style="display: flex;gap: 10px;">
+            <div>
+                <h4>Draft</h4>
+            </div>
+            <div>
+                <h4>Submitted</h4>
+            </div>
+            <div>
+                <h4>Approved</h4>
+            </div>
+            <div>
+                <h4>Rejected</h4>
+            </div>
+        </div>
+    </div>
+    </div>
+    <button><a href="/assignments/uploadAssignments">Upload New Assignment</a></button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>view details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% valid.forEach((val)=> { %>
+               <tr>
+                <td><%= val.title %></td>
+                <td><%= val.status %></td>
+                <td><button><a href="/assignments/viewDetails/<%= val._id %>">view details</a></button></td>
+               </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+
+    table {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 30px;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border-collapse: collapse;
+        border: none;
+    }
+
+    thead {
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    }
+
+    thead tr th {
+        color: white;
+        padding: 20px 15px;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        border: none;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+
+    tbody tr:hover {
+        background: #f7fafc;
+        transform: scale(1.01);
+    }
+
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    tbody td {
+        padding: 18px 15px;
+        color: #2d3748;
+        font-size: 15px;
+        border: none;
+    }
+
+    tbody td:last-child {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    tbody td a {
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    tbody td a[href*="editUser"] {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        color: white;
+    }
+
+    tbody td a[href*="editUser"]:hover {
+        background: linear-gradient(135deg, #38a169, #2f855a);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+    }
+
+    tbody td a[href*="deleteUser"] {
+        background: linear-gradient(135deg, #f56565, #e53e3e);
+        color: white;
+    }
+
+    tbody td a[href*="deleteUser"]:hover {
+        background: linear-gradient(135deg, #e53e3e, #c53030);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(245, 101, 101, 0.4);
+    }
+
+    body > a {
+        display: inline-block;
+        padding: 12px 30px;
+        margin: 0 10px;
+        background: white;
+        color: #667eea;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    body > a:hover {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    body > a:first-of-type {
+        margin-left: calc(50% - 600px);
+    }
+
+    @media (max-width: 768px) {
+        table {
+            font-size: 14px;
+        }
+
+        thead tr th {
+            padding: 15px 10px;
+            font-size: 12px;
+        }
+
+        tbody td {
+            padding: 12px 10px;
+            font-size: 13px;
+        }
+
+        tbody td:last-child {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        tbody td a {
+            width: 100%;
+            text-align: center;
+        }
+
+        body > a:first-of-type {
+            margin-left: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 20px 10px;
+        }
+
+        table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    }
+</style>
+<body>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((val)=> { %>
+                   <tr>
+                    <td><%= val.name %></td>
+                    <td><%= val.email %></td>
+                    <td><%= val.role %></td>
+                    <td><%= val.dept %></td>
+                    <td><a href="/users/edit/<%= val._id %>">Edit</a>  <a href="/users/delete/<%= val._id %>">Delete</a></td>
+                   </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/users/list?page=<%= currPage-1 %>">prev</a>  <a href="/users/list?page=<%= currPage+1 %>">next</a>
+</body>
+</html>

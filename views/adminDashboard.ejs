@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    body > div {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    body > div > div:first-child {
+        background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+        padding: 40px 30px;
+        min-width: 280px;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    body > div > div:first-child h1 {
+        color: #fff;
+        font-size: 28px;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 15px;
+    }
+
+    body > div > div:first-child > div {
+        margin: 15px 0;
+    }
+
+    body > div > div:first-child a {
+        color: #e2e8f0;
+        text-decoration: none;
+        display: block;
+        padding: 15px 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        font-weight: 500;
+        border-left: 4px solid transparent;
+    }
+
+    body > div > div:first-child a:hover {
+        background: rgba(102, 126, 234, 0.2);
+        color: #fff;
+        transform: translateX(5px);
+        border-left-color: #667eea;
+    }
+
+    body > div > div:last-child {
+        padding: 40px;
+        flex: 1;
+        background: #f7fafc;
+    }
+
+    body > div > div:last-child > h1 {
+        color: #2d3748;
+        font-size: 36px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    body > div > div:last-child > div {
+        display: inline-block;
+        background: white;
+        padding: 30px;
+        margin: 15px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        min-width: 250px;
+        transition: all 0.3s ease;
+        border-top: 4px solid #667eea;
+    }
+
+    body > div > div:last-child > div:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    body > div > div:last-child > div:nth-child(2) {
+        border-top-color: #667eea;
+    }
+
+    body > div > div:last-child > div:nth-child(3) {
+        border-top-color: #48bb78;
+    }
+
+    body > div > div:last-child > div:nth-child(4) {
+        border-top-color: #ed8936;
+    }
+
+    body > div > div:last-child > div:nth-child(5) {
+        border-top-color: #e53e3e;
+    }
+
+    body > div > div:last-child h3 {
+        color: #4a5568;
+        font-size: 16px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    body > div > div:last-child p {
+        color: #2d3748;
+        font-size: 42px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    @media (max-width: 768px) {
+        body > div {
+            flex-direction: column;
+        }
+
+        body > div > div:first-child {
+            min-width: 100%;
+        }
+
+        body > div > div:last-child > div {
+            display: block;
+            margin: 15px 0;
+        }
+    }
+</style>
+<body>
+    <div style="display:flex;">
+      <div>
+        <h1>navigation</h1>
+        <div><a href="/department/list">Departments</a></div>
+        <div><a href="/users/list">Users</a></div>
+        <div><a href="/users/create">Add Users</a></div>
+      </div>
+      <div>
+        <h1>Dashboard Overview</h1>
+        <div>
+            <h3>Total Departments</h3>
+            <p><%= data.length %></p>
+        </div>
+        <div>
+            <h3>Total Students</h3>
+            <p><%= student %></p>
+        </div>
+        <div>
+            <h3>Total Professors</h3>
+            <p><%= prof %></p>
+        </div>
+        <div>
+            <h3>Total HOD</h3>
+            <p><%= hod %></p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
