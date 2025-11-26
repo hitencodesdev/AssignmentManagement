@@ -5,6 +5,7 @@ const user=require("../models/Users")
 const department=require("../models/Department")
 const cloudinary = require("../config/cloudnairy"); 
 const streamifier = require("streamifier");
+const upload = require("../config/multer");
 const key = "&$^@&#*!";
 
 
@@ -13,74 +14,44 @@ exports.assign=(req,res)=>
     res.render("uploadAssignment")
 }
 
-
-function uploadPdfBuffer(buffer, publicId) {
-    return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-            {
-                resource_type: "raw",
-                format: "pdf",
-                public_id: `Assignments/${publicId}`,
-                overwrite: true,
-            },
-            (error, result) => {
-                if (error) reject(error);
-                else resolve(result);
-            }
-        );
-        stream.end(buffer);
-    });
-}
-
 exports.uploadAssignment = async (req, res) => {
     try {
-        // Validate file input
-        if (!req.files || req.files.length === 0) {
-            return res.status(400).json({ error: "No PDF files uploaded" });
-        }
 
         // Extract token
-        const token = req.cookies.token;
-        if (!token) {
-            return res.status(401).send("Unauthorized - No token found");
-        }
+        // const token = req.cookies.token;
 
         // Verify JWT
-        let decoded;
-        try {
-            decoded = jwt.verify(token, key); // <-- YOUR JWT SECRET HERE
-        } catch (err) {
-            return res.status(401).send("Invalid token");
-        }
+        // let decoded;
+        // try {
+        //     decoded = jwt.verify(token, key); // <-- YOUR JWT SECRET HERE
+        // } catch (err) {
+        //     return res.status(401).send("Invalid token");
+        // }
 
         // Extract form fields
-        const { title, description, category } = req.body;
+        // const { title, description, category } = req.body;
+        let path = req.file.path
+        console.log(path)
+        const uploadResults = await cloudinary.uploader.upload(path, {
+            resource_type: "raw"
+        })
+        .catch(err=> console.log(err.message))
 
-        if (!title || !description || !category) {
-            return res.status(400).json({ error: "Required fields missing" });
-        }
-
-        // Upload uploaded files to Cloudinary
-        const uploadResults = await Promise.all(
-            req.files.map((file) => {
-                const fileBaseName = file.originalname.replace(".pdf", "");
-                return uploadPdfBuffer(file.buffer, fileBaseName);
-            })
-        );
+        console.log(uploadResults)
 
         // Store actual Cloudinary URLs
-        const fileUrls = uploadResults.map((file) => file.secure_url);
+        // const fileUrls = uploadResults.map((file) => file.secure_url);
 
         // Save assignment in MongoDB
-        await assignment.create({
-            id: shortid(),
-            studentId: decoded.id,
-            title,
-            description,
-            category,
-            status: "Draft",
-            fileName: fileUrls // <-- now full secure URLs
-        });
+        // await assignment.create({
+        //     id: shortid(),
+        //     studentId: decoded.id,
+        //     title,
+        //     description,
+        //     category,
+        //     status: "Draft",
+        //     fileName: uploadResults.secure_url // <-- now full secure URLs
+        // });
 
         return res.redirect("/assignments/uploadAssignments");
 

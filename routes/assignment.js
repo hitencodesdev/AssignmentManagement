@@ -10,7 +10,11 @@ const {
     viewDetails
 } = require("../controllers/assignment");
 
-router.post("/uploadAssignments",upload.array("file", 5), uploadAssignment);
+router.post("/uploadAssignments",upload.single("file"), uploadAssignment);
+
+
+
+
 router.get("/allAssignments",getAllAssignments);
 router.get("/uploadAssignments",assign)
 router.get('/submitAssignment/:id',submitAssignment)
