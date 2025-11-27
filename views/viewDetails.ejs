@@ -8,7 +8,8 @@
 <body>
     <h1><%= data.title %></h1>
     <h3>Description:<%= data.description %></h3>
-    <p>file: <a href="https://res.cloudinary.com/dxd8s94us/raw/upload/fl_attachment:assignment.pdf/v1764059846/Assignments/htqghzvmdktkmkplxta8.pdf">File</a></p>
+    <p>file: <a href="<%= data.fileName[0] %>">File</a></p>
     <h5>Current Status:<%= data.status %></h5>
+    <iframe src="<%= data.fileName[0] %>" frameborder="10"></iframe>
 </body>
 </html>

@@ -16,51 +16,35 @@ exports.assign=(req,res)=>
 
 exports.uploadAssignment = async (req, res) => {
     try {
-
-        // Extract token
-        // const token = req.cookies.token;
-
-        // Verify JWT
-        // let decoded;
-        // try {
-        //     decoded = jwt.verify(token, key); // <-- YOUR JWT SECRET HERE
-        // } catch (err) {
-        //     return res.status(401).send("Invalid token");
-        // }
-
-        // Extract form fields
-        // const { title, description, category } = req.body;
         let path = req.file.path
-        console.log(path)
+        let {title,description,category}=req.body
         const uploadResults = await cloudinary.uploader.upload(path, {
-            resource_type: "raw"
+            resource_type: "raw",
+            format:"pdf"
         })
-        .catch(err=> console.log(err.message))
-
-        console.log(uploadResults)
-
-        // Store actual Cloudinary URLs
-        // const fileUrls = uploadResults.map((file) => file.secure_url);
-
-        // Save assignment in MongoDB
-        // await assignment.create({
-        //     id: shortid(),
-        //     studentId: decoded.id,
-        //     title,
-        //     description,
-        //     category,
-        //     status: "Draft",
-        //     fileName: uploadResults.secure_url // <-- now full secure URLs
-        // });
-
-        return res.redirect("/assignments/uploadAssignments");
+        let token=req.cookies.token
+        jwt.verify(token,key,async (err,decode)=>
+        {
+            if(err)
+                res.send("error")
+            else
+            {
+                await assignment.create({
+                    id:shortid(),
+                    studentId:decode.id,
+                    title:title,
+                    description:description,
+                    category:category,
+                    status:"Draft",
+                    fileName:uploadResults.secure_url
+                })
+                console.log(uploadResults)
+                return res.redirect("/assignments/uploadAssignments");
+            }
+        })
 
     } catch (err) {
-        console.error("UPLOAD ASSIGNMENT ERROR:", err);
-        return res.status(500).json({
-            success: false,
-            error: err.message
-        });
+        res.send("error")
     }
 };
 

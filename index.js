@@ -14,7 +14,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookie());
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");    
 
 connectDB();
 
