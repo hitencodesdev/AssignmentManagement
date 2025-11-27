@@ -5,4 +5,4 @@ const login = require("../controllers/login");
 router.post("/login", login.loginPost);
 router.get("/login", login.login);
 
-module.exports = router;
+module.exports = router;    
