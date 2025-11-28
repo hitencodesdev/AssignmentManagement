@@ -83,3 +83,16 @@ exports.viewDetails=async(req,res)=>
         
     }
 }
+
+exports.submitForReview=async(req,res)=>
+{
+    try {
+        let {prof}=req.body;
+        let {id}=req.params
+        await user.findByIdAndUpdate({studentId:id},{submittedTo:prof,stauts:"Submitted"})
+        res.render("allAssignment")
+
+    } catch (error) {
+        
+    }
+}

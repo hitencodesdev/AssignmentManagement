@@ -2,11 +2,12 @@ const user = require("../models/Users");
 const department = require("../models/Department");
 const shortid = require("shortid");
 const nodemailer=require("nodemailer")
+require("dotenv").config()
 const transport=nodemailer.createTransport({
     service:"gmail",
     auth:{
-        user:"hitengarg918@gmail.com",
-        pass:"uxcg waax idpv gnyz"
+        user:process.env.EMAIL,
+        pass:process.env.APP_PASSWORD
     }
 })
 
