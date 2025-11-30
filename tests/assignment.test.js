@@ -7,15 +7,16 @@ jest.mock("../controllers/assignment", () => ({
     getAllAssignments: jest.fn((req, res) => res.status(200).json({ message: "getAllAssignments called" })),
     assign: jest.fn((req, res) => res.status(200).json({ message: "assign called" })),
     submitAssignment: jest.fn((req, res) => res.status(200).json({ message: "submitAssignment called" })),
-    viewDetails: jest.fn((req, res) => res.status(200).json({ message: "viewDetails called" }))
+    viewDetails: jest.fn((req, res) => res.status(200).json({ message: "viewDetails called" })),
+    submitForReview: jest.fn((req, res) => res.status(200).json({ message: "submitForReview called" }))
 }));
 
-// Mock Multer (so it does not try to process real files)
+// Correct Multer mock (IMPORTANT)
 jest.mock("../config/multer", () => ({
-    array: () => (req, res, next) => next()
+    single: () => (req, res, next) => next()
 }));
 
-const routes = require("../routes/assignment"); // your router
+const routes = require("../routes/assignment");
 
 // Build a minimal app
 const app = express();
@@ -59,6 +60,13 @@ describe("Assignment Routes", () => {
         
         expect(response.statusCode).toBe(200);
         expect(response.body.message).toBe("viewDetails called");
+    });
+
+    test("POST /submitForReview/:id calls submitForReview", async () => {
+        const response = await request(app).post("/submitForReview/789");
+        
+        expect(response.statusCode).toBe(200);
+        expect(response.body.message).toBe("submitForReview called");
     });
 
 });

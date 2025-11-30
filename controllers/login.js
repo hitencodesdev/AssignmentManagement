@@ -3,7 +3,7 @@ const bcrypt=require("bcrypt")
 const admin=require('../models/Admin')
 const user=require('../models/Users')
 
-const key = "&$^@&#*!"
+const key = process.env.KEY
 
 
 

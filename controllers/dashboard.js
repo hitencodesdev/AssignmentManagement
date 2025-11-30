@@ -4,7 +4,7 @@ const user = require("../models/Users");
 const jwt = require("jsonwebtoken");
 const ObjectId = require("bson").ObjectId;
 
-const key = "&$^@&#*!";
+const key = process.env.KEY;
 
 exports.userDashboard = async (req, res) => {
     let token = req.cookies.token;
