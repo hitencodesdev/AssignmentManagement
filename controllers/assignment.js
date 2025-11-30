@@ -87,12 +87,13 @@ exports.viewDetails=async(req,res)=>
 exports.submitForReview=async(req,res)=>
 {
     try {
-        let {prof}=req.body;
+        let {professor}=req.body;
         let {id}=req.params
-        await user.findByIdAndUpdate({studentId:id},{submittedTo:prof,stauts:"Submitted"})
-        res.render("allAssignment")
+        console.log(professor,id)
+        await assignment.findByIdAndUpdate({_id:id},{submittedTo:professor,status:"Submitted"})
+        res.redirect("/assignments/allAssignments")
 
     } catch (error) {
-        
+        res.send("error")
     }
 }

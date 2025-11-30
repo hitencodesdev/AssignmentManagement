@@ -4,10 +4,11 @@ const auth = require("../middleware/auth");
 
 const {
     userDashboard,
-    adminDashboard
+    adminDashboard,
+    professorDashboard
 } = require("../controllers/dashboard");
 
 router.get("/user", userDashboard);
 router.get("/admin", auth(), adminDashboard);
-
+router.get('/professor',professorDashboard)
 module.exports = router;

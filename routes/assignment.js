@@ -12,13 +12,9 @@ const {
 } = require("../controllers/assignment");
 
 router.post("/uploadAssignments",upload.single("file"), uploadAssignment);
-
-
-
-
 router.get("/allAssignments",getAllAssignments);
 router.get("/uploadAssignments",assign)
 router.get('/submitAssignment/:id',submitAssignment)
 router.get('/viewDetails/:id',viewDetails)
-router.get("/submitForReview/:id",submitForReview)
+router.post("/submitForReview/:id",submitForReview)
 module.exports = router;

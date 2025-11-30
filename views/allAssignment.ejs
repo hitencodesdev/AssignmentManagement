@@ -18,22 +18,29 @@
         </thead>
         <tbody>
             <% data.forEach((val)=> { %>
-                <% if (val.status=='Draft') { %>
-                 <tr>
-                <td><%= val.title %></td>
-                <td><%= val.category %></td>
-                    <form action="/assignment/submitForReview/<%= val.studentId %>" method="post">
-                    <td>
-                    <select name="professor">
-                       <% prof.forEach((value)=> { %>
-                       <option value="<%= val.name %>"><%= value.name %></option>
-                       <% }) %> 
-                    </select>
-                    </td>
-                    <td><button type="submit">submit for review</button></td>
-                    </form>
-                <td><%= val.createdAt %></td>
-            </tr>
+                <% if (val.status === 'Draft') { %>
+
+                <form action="/assignments/submitForReview/<%= val._id %>" method="post">
+                    <tr>
+                        <td><%= val.title %></td>
+                        <td><%= val.category %></td>
+
+                        <td>
+                            <select name="professor">
+                                <% prof.forEach((value)=> { %>
+                                    <option value="<%= value.name %>"><%= value.name %></option>
+                                <% }) %> 
+                            </select>
+                        </td>
+
+                        <td>
+                            <button type="submit">submit for review</button>
+                        </td>
+
+                        <td><%= val.createdAt %></td>
+                    </tr>
+                </form>
+
                 <% } %>
             <% }) %>
         </tbody>

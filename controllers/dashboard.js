@@ -33,3 +33,12 @@ exports.adminDashboard = async (req, res) => {
         res.send("error");
     }
 };
+
+exports.professorDashboard=async(req,res)=>
+{
+    try {
+        res.render('professorDashboard')
+    } catch (error) {
+        res.send("error")
+    }
+}
