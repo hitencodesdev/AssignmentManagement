@@ -2,7 +2,7 @@ const admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const key = "&$^@&#*!";
+const key = process.env.KEY;
 
 exports.registerAdmin = async (req, res) => {
     try {
@@ -14,3 +14,15 @@ exports.registerAdmin = async (req, res) => {
         res.send(error);
     }
 };
+
+exports.professorAuth=(req,res)=>
+{
+  let token=req.cookies.token;
+  jwt.verify(token,key,(err,decode)=>
+{
+    if(decode.role=="professor")
+        next();
+    else
+        res.send("You are do not have the access for this route")
+})
+}

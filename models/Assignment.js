@@ -32,6 +32,9 @@ const assignmentSchema=new mongoose.Schema({
     submittedTo:
     {
         type:String,
+    },
+    submittedBy:{
+        type:String
     }
 },{timestamps:true})
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div style="display: flex;" gap="10px">
+    <div>
+        <h3>DashBoard</h3>
+        <h3><a href="/professor/assignmentsReview">Assignments</a></h3>
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <div>
+            <h2>Pending review</h2>
+            <p></p>
+        </div>
+        <div>
+            <h2>Total Submitted</h2>
+            <p></p>
+        </div>
+        <div>
+            <h2>Already Approved</h2>
+            <p></p>
+        </div>
+    </div>
+   </div>
+   <table border="1">
+    <thead>
+        <tr>
+            <th>Assignment</th>
+            <th>Student</th>
+            <th>Submitted</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% data.forEach((val)=> { %>
+      <tr>
+        <td><%= val.title %></td>
+        <td><%= val.submittedBy %></td>
+        <td><%= new Date(val.createdAt).toDateString().split(' ').slice(0,4).join(' ') %></td>
+        <td><%= val.status %></td>
+        <td><button><a href="/professor/review/<%= val.id %>">Review</a></button></td>
+      </tr>
+      <% }) %>
+    </tbody>
+   </table>
+</body>
+<script>
+    console.log(data)
+</script>
+</html>

@@ -8,6 +8,7 @@ const userRoutes = require("./routes/user");
 const assignmentRoutes = require("./routes/assignment");
 const dashboardRoutes = require("./routes/dashboard");
 const passwordRoutes=require('./routes/password')
+const professorRoutes=require('./routes/professor')
 
 const app = express();
 
@@ -24,5 +25,8 @@ app.use("/users", userRoutes);
 app.use("/assignments", assignmentRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use('/password',passwordRoutes)
+app.use('/professor',professorRoutes)
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+
+app.listen(5000, () => console.log("Server started"));
+     

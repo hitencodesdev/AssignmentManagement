@@ -4,9 +4,9 @@ const shortid = require("shortid");
 const user=require("../models/Users")
 const department=require("../models/Department")
 const cloudinary = require("../config/cloudnairy"); 
-const streamifier = require("streamifier");
 const upload = require("../config/multer");
-const key = "&$^@&#*!";
+require("dotenv").config()
+const key = process.env.KEY;
 
 
 exports.assign=(req,res)=>
@@ -36,7 +36,8 @@ exports.uploadAssignment = async (req, res) => {
                     description:description,
                     category:category,
                     status:"Draft",
-                    fileName:uploadResults.secure_url
+                    fileName:uploadResults.secure_url,
+                    submittedBy:decode.name
                 })
                 console.log(uploadResults)
                 return res.redirect("/assignments/uploadAssignments");
