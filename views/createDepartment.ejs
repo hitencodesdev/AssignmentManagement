@@ -13,151 +13,163 @@
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+        background: #f8f9fa;
         min-height: 100vh;
-        padding: 40px 20px;
+        padding: 48px 24px;
+        color: #1a1a1a;
     }
 
     #search {
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto 30px;
+        margin: 0 auto 32px;
         display: block;
-        padding: 15px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        padding: 14px 18px;
+        font-size: 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
         background: white;
-        color: #2d3748;
-        transition: all 0.3s ease;
+        color: #1a1a1a;
+        transition: all 0.2s ease;
     }
 
     #search:focus {
         outline: none;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        transform: translateY(-2px);
+        border-color: #9ca3af;
     }
 
     #search::placeholder {
-        color: #a0aec0;
+        color: #9ca3af;
     }
 
     form {
         max-width: 1200px;
-        margin: 0 auto 30px;
+        margin: 0 auto 32px;
         background: white;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        align-items: end;
+        padding: 32px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        display: flex;
+        gap: 16px;
+        align-items: flex-end;
+        flex-wrap: wrap;
     }
 
     form > input[type="text"] {
-        padding: 12px 15px;
-        border: 2px solid #e2e8f0;
+        padding: 12px 14px;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
-        font-size: 15px;
-        color: #2d3748;
-        transition: all 0.3s ease;
-        width: 100%;
+        font-size: 14px;
+        color: #1a1a1a;
+        transition: all 0.2s ease;
+        flex: 1;
+        min-width: 180px;
     }
 
     form > input[type="text"]:focus {
         outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: #9ca3af;
     }
 
     form::before {
-        content: 'Name:';
-        font-weight: 600;
-        color: #4a5568;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        content: 'Name';
+        font-weight: 500;
+        color: #6b7280;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        position: absolute;
+        margin-top: -24px;
     }
 
-    form > :nth-child(2)::before {
-        content: 'Type:';
-        font-weight: 600;
-        color: #4a5568;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        display: block;
-        margin-bottom: 8px;
+    form > input[type="text"]:nth-of-type(1) {
+        position: relative;
     }
 
-    form > :nth-child(3)::before {
-        content: 'Address:';
-        font-weight: 600;
-        color: #4a5568;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        display: block;
-        margin-bottom: 8px;
+    form > input[type="text"]:nth-of-type(1)::before {
+        content: 'Name';
+        font-weight: 500;
+        color: #6b7280;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        position: absolute;
+        top: -24px;
+        left: 0;
+    }
+
+    form > input[type="text"]:nth-of-type(2)::before {
+        content: 'Type';
+        font-weight: 500;
+        color: #6b7280;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        position: absolute;
+        top: -24px;
+        left: 0;
+    }
+
+    form > input[type="text"]:nth-of-type(3)::before {
+        content: 'Address';
+        font-weight: 500;
+        color: #6b7280;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        position: absolute;
+        top: -24px;
+        left: 0;
     }
 
     form > button {
-        padding: 12px 30px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        padding: 12px 24px;
+        background: #1a1a1a;
         color: white;
         border: none;
         border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 500;
         cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
     }
 
     form > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        background: #374151;
     }
 
     table {
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto 30px;
+        margin: 0 auto 32px;
         background: white;
-        border-radius: 15px;
+        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border: 1px solid #e5e7eb;
         border-collapse: collapse;
-        border: none;
     }
 
     thead {
-        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        background: #fafafa;
+        border-bottom: 1px solid #e5e7eb;
     }
 
     thead tr th {
-        color: white;
-        padding: 20px 15px;
+        color: #6b7280;
+        padding: 16px 20px;
         text-align: left;
         font-weight: 600;
-        text-transform: uppercase;
+        font-size: 13px;
         letter-spacing: 0.5px;
-        font-size: 14px;
+        text-transform: uppercase;
         border: none;
     }
 
     tbody tr {
-        border-bottom: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
+        border-bottom: 1px solid #f3f4f6;
+        transition: all 0.15s ease;
     }
 
     tbody tr:hover {
-        background: #f7fafc;
-        transform: scale(1.01);
+        background: #f9fafb;
     }
 
     tbody tr:last-child {
@@ -165,71 +177,67 @@
     }
 
     tbody td {
-        padding: 18px 15px;
-        color: #2d3748;
-        font-size: 15px;
+        padding: 16px 20px;
+        color: #1a1a1a;
+        font-size: 14px;
         border: none;
     }
 
-    tbody td:nth-child(4) {
+    tbody td:nth-child(3) {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         align-items: center;
     }
 
     tbody td a {
         text-decoration: none;
-        padding: 8px 16px;
+        padding: 6px 14px;
         border-radius: 6px;
         font-weight: 500;
-        font-size: 14px;
-        transition: all 0.3s ease;
+        font-size: 13px;
+        transition: all 0.2s ease;
         display: inline-block;
     }
 
-    tbody td a[href*="editDepartment"] {
-        background: linear-gradient(135deg, #48bb78, #38a169);
-        color: white;
+    tbody td a[href*="edit"] {
+        background: #f3f4f6;
+        color: #1a1a1a;
+        border: 1px solid #e5e7eb;
     }
 
-    tbody td a[href*="editDepartment"]:hover {
-        background: linear-gradient(135deg, #38a169, #2f855a);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+    tbody td a[href*="edit"]:hover {
+        background: #e5e7eb;
+        border-color: #d1d5db;
     }
 
-    tbody td a[href*="deleteDepartment"] {
-        background: linear-gradient(135deg, #f56565, #e53e3e);
-        color: white;
+    tbody td a[href*="delete"] {
+        background: #fee;
+        color: #dc2626;
+        border: 1px solid #fecaca;
     }
 
-    tbody td a[href*="deleteDepartment"]:hover {
-        background: linear-gradient(135deg, #e53e3e, #c53030);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(245, 101, 101, 0.4);
+    tbody td a[href*="delete"]:hover {
+        background: #fecaca;
+        border-color: #fca5a5;
     }
 
     body > a {
         display: inline-block;
-        padding: 12px 30px;
-        margin: 0 10px;
+        padding: 10px 20px;
+        margin: 0 6px;
         background: white;
-        color: #667eea;
+        color: #1a1a1a;
         text-decoration: none;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        border: 1px solid #e5e7eb;
     }
 
     body > a:hover {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: #f9fafb;
+        border-color: #d1d5db;
     }
 
     body > a:first-of-type {
@@ -237,28 +245,41 @@
     }
 
     @media (max-width: 768px) {
+        body {
+            padding: 24px 16px;
+        }
+
         form {
-            grid-template-columns: 1fr;
-            padding: 20px;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        form > input[type="text"] {
+            width: 100%;
+        }
+
+        form > button {
+            width: 100%;
         }
 
         table {
-            font-size: 14px;
+            font-size: 13px;
         }
 
         thead tr th {
-            padding: 15px 10px;
+            padding: 12px 16px;
             font-size: 12px;
         }
 
         tbody td {
-            padding: 12px 10px;
+            padding: 12px 16px;
             font-size: 13px;
         }
 
-        tbody td:nth-child(4) {
+        tbody td:nth-child(3) {
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            align-items: stretch;
         }
 
         tbody td a {
@@ -267,13 +288,13 @@
         }
 
         body > a:first-of-type {
-            margin-left: 10px;
+            margin-left: 6px;
         }
     }
 
     @media (max-width: 480px) {
         body {
-            padding: 20px 10px;
+            padding: 20px 12px;
         }
 
         table {

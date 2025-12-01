@@ -11,10 +11,12 @@ const {
     submitForReview
 } = require("../controllers/assignment");
 
+const studentAuth=require("../middleware/studentAuth")
+
 router.post("/uploadAssignments",upload.single("file"), uploadAssignment);
-router.get("/allAssignments",getAllAssignments);
-router.get("/uploadAssignments",assign)
-router.get('/submitAssignment/:id',submitAssignment)
-router.get('/viewDetails/:id',viewDetails)
-router.post("/submitForReview/:id",submitForReview)
+router.get("/allAssignments",studentAuth(),getAllAssignments);
+router.get("/uploadAssignments",studentAuth(),assign)
+router.get('/submitAssignment/:id',studentAuth(),submitAssignment)
+router.get('/viewDetails/:id',studentAuth(),viewDetails)
+router.post("/submitForReview/:id",studentAuth(),submitForReview)
 module.exports = router;

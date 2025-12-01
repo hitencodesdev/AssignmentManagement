@@ -5,8 +5,9 @@ const {
     reviewAssignment,
     decision
 }=require("../controllers/professor")
+const professorAuth=require('../middleware/professorAuth')
 
-router.get('/assignmentsReview',getAssignment)
-router.get('/review/:id',reviewAssignment)
-router.get('/decision/:id',decision)
+router.get('/assignmentsReview',professorAuth(),getAssignment)
+router.get('/review/:id',professorAuth(),reviewAssignment)
+router.get('/decision/:id',professorAuth(),decision)
 module.exports=router  

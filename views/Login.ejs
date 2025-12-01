@@ -5,75 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      height: 100vh;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #1a1a1a;
     }
 
     .login-container {
       background: white;
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-      width: 320px;
-      text-align: center;
+      padding: 48px 40px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      width: 400px;
+      max-width: 90%;
     }
 
     h2 {
-      margin-bottom: 25px;
-      color: #333;
+      margin-bottom: 32px;
+      color: #1a1a1a;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
+      width: 100%;
+      padding: 12px 14px;
+      margin: 0 0 16px 0;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       outline: none;
-      transition: border-color 0.3s;
-      font-size: 15px;
+      transition: border-color 0.2s ease;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1a1a1a;
+    }
+
+    input::placeholder {
+      color: #9ca3af;
     }
 
     input:focus {
-      border-color: #2575fc;
+      border-color: #9ca3af;
     }
 
     button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: none;
-      background-color: #2575fc;
+      background-color: #1a1a1a;
       color: white;
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 500;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.2s ease;
+      margin-top: 8px;
     }
 
     button:hover {
-      background-color: #1b5fd9;
+      background-color: #374151;
+    }
+
+    button:active {
+      transform: scale(0.98);
     }
 
     p {
-      margin-top: 15px;
+      margin-top: 24px;
       font-size: 14px;
-      color: #555;
+      color: #6b7280;
+      text-align: center;
     }
 
     a {
-      color: #2575fc;
+      color: #1a1a1a;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: #374151;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 32px 24px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>

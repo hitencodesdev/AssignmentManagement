@@ -14,8 +14,14 @@ exports.userDashboard = async (req, res) => {
 
         let data = await assignment.find({});
         let valid = data.filter(a => new ObjectId(a.studentId).equals(decode.id));
+        
 
-        res.render("userDashBoard", { valid });
+        let submit=valid.filter(u=>u.status==="submit").length;
+        let draft=valid.filter(u=>u.status==="Draft").length;
+        let reject=valid.filter(u=>u.status==="reject").length;
+        let approve=valid.filter(u=>u.status==="approve").length;
+
+        res.render("userDashBoard", { valid ,submit,reject,draft,approve});
     });
 };
 

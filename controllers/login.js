@@ -36,7 +36,7 @@ const loginPost=async(req,res)=>
         }  
         else if(regular.role=='student')
         {
-           let token=jwt.sign({id:regular._id,name:regular.name,email:regular.email,role:"user",dept:regular.dept},key)
+           let token=jwt.sign({id:regular._id,name:regular.name,email:regular.email,role:"student",dept:regular.dept},key)
            res.cookie("token",token)
            res.redirect('/dashboard/user')
         }   
