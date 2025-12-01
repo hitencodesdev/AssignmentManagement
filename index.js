@@ -28,5 +28,5 @@ app.use('/password',passwordRoutes)
 app.use('/professor',professorRoutes)
 
 
-app.listen(5000, () => console.log("Server started"));
+app.listen(process.env.PORT, () => console.log("Server started"));
      

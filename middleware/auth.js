@@ -1,5 +1,6 @@
 const jwt=require('jsonwebtoken')
-const key="&$^@&#*!"
+require("dotenv").config()
+const key=process.env.KEY
 
 function auth()
 {

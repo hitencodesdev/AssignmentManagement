@@ -15,14 +15,14 @@ exports.registerAdmin = async (req, res) => {
     }
 };
 
-exports.professorAuth=(req,res)=>
-{
-  let token=req.cookies.token;
-  jwt.verify(token,key,(err,decode)=>
-{
-    if(decode.role=="professor")
-        next();
-    else
-        res.send("You are do not have the access for this route")
-})
-}
+// exports.professorAuth=(req,res)=>
+// {
+//   let token=req.cookies.token;
+//   jwt.verify(token,key,(err,decode)=>
+// {
+//     if(decode.role=="professor")
+//         next();
+//     else
+//         res.send("You are do not have the access for this route")
+// })
+// }

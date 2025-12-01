@@ -2,9 +2,9 @@ const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
 const admin=require('../models/Admin')
 const user=require('../models/Users')
-
+require("dotenv").config()
 const key = process.env.KEY
-
+console.log(key)
 
 
 
@@ -20,7 +20,6 @@ const loginPost=async(req,res)=>
         let {email,password}=req.body
         const userAdmin=await admin.findOne({email:email})
         const regular=await user.findOne({email:email})
-        
         if(userAdmin)
         {
             const isMatch=await bcrypt.compare(password,userAdmin.password)
