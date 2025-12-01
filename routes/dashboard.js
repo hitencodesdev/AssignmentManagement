@@ -10,5 +10,5 @@ const {
 
 router.get("/user", userDashboard);
 router.get("/admin", auth(), adminDashboard);
-router.get('/professor',professorAuth,professorDashboard)
+router.get('/professor',professorAuth(),professorDashboard)
 module.exports = router;

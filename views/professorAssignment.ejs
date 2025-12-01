@@ -4,61 +4,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+    min-height: 100vh;
+    color: #1a1a1a;
+}
+
+/* Layout Structure */
+.main-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #f3f4f6;
+    padding: 32px 0;
+    width: 220px;
+    border-right: 1px solid #e5e7eb;
+}
+
+.sidebar h3 {
+    padding: 12px 24px;
+    margin: 6px 12px;
+    font-size: 14px;
+    color: #1a1a1a;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.sidebar h3:hover {
+    background: #e5e7eb;
+}
+
+.sidebar h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 40px 50px;
+    background: #ffffff;
+}
+
+/* Stats container */
+.stats-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stats-card {
+    background: white;
+    padding: 28px 32px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.stats-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.stats-card h2 {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.stats-card p {
+    font-size: 36px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Table */
+table {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    border-collapse: collapse;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+thead {
+    background: #fafafa;
+}
+
+thead th {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    transition: background 0.15s ease;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+tbody td {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+tbody td button {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+tbody td button:hover {
+    background: #374151;
+}
+
+tbody td button a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .stats-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .main-content {
+        padding: 24px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+    </style>
 </head>
 <body>
-    
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <div style="display: flex;" gap="10px">
-    <div>
-        <h3>DashBoard</h3>
-        <h3><a href="/professor/assignmentsReview">Assignments</a></h3>
+    <div class="main-layout">
+        
+        <div class="sidebar">
+            <h3>Dashboard</h3>
+            <h3><a href="/professor/assignmentsReview">Assignments</a></h3>
+        </div>
+
+        <div class="main-content">
+            
+            <div class="stats-container">
+                <div class="stats-card">
+                    <h2>Pending Review</h2>
+                    <p></p>
+                </div>
+
+                <div class="stats-card">
+                    <h2>Total Submitted</h2>
+                    <p></p>
+                </div>
+
+                <div class="stats-card">
+                    <h2>Already Approved</h2>
+                    <p></p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Student</th>
+                        <th>Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% data.forEach((val)=> { %>
+                    <tr>
+                        <td><%= val.title %></td>
+                        <td><%= val.submittedBy %></td>
+                        <td><%= new Date(val.createdAt).toDateString().split(' ').slice(0,4).join(' ') %></td>
+                        <td><%= val.status %></td>
+                        <td>
+                            <button><a href="/professor/review/<%= val.id %>">Review</a></button>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+        </div>
     </div>
-    <div style="display: flex; gap: 10px;">
-        <div>
-            <h2>Pending review</h2>
-            <p></p>
-        </div>
-        <div>
-            <h2>Total Submitted</h2>
-            <p></p>
-        </div>
-        <div>
-            <h2>Already Approved</h2>
-            <p></p>
-        </div>
-    </div>
-   </div>
-   <table border="1">
-    <thead>
-        <tr>
-            <th>Assignment</th>
-            <th>Student</th>
-            <th>Submitted</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% data.forEach((val)=> { %>
-      <tr>
-        <td><%= val.title %></td>
-        <td><%= val.submittedBy %></td>
-        <td><%= new Date(val.createdAt).toDateString().split(' ').slice(0,4).join(' ') %></td>
-        <td><%= val.status %></td>
-        <td><button><a href="/professor/review/<%= val.id %>">Review</a></button></td>
-      </tr>
-      <% }) %>
-    </tbody>
-   </table>
 </body>
+
 <script>
     console.log(data)
 </script>
