@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 48px;
+        }
+
+        nav h1 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        nav a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 24px;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            background: #374151;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 120px auto 80px;
+            padding: 80px 48px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .hero-buttons a {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .hero-buttons a:first-child {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .hero-buttons a:first-child:hover {
+            background: #374151;
+        }
+
+        .hero-buttons a:last-child {
+            background: white;
+            color: #1a1a1a;
+            border: 1px solid #e5e7eb;
+        }
+
+        .hero-buttons a:last-child:hover {
+            border-color: #d1d5db;
+            background: #f9fafb;
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 48px;
+        }
+
+        .features h3 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: #f9fafb;
+            padding: 40px 32px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+        }
+
+        .stat-card h5 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            padding: 40px 48px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav, .hero, .features, .stats, footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons a {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>Assignment Manager</h1>
+            <a href="/login">Sign In</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Streamline Your<br>Assignment Workflow</h2>
+        <p>A comprehensive platform for managing assignments, tracking submissions, and facilitating collaboration between students and professors.</p>
+        <div class="hero-buttons">
+            <a href="/login">Get Started</a>
+            <a href="#features">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h3>Everything You Need</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>Department Management</h4>
+                <p>Organize users by departments with role-based access control for students, professors, and HODs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>Assignment Tracking</h4>
+                <p>Track assignment status from draft to submission, review, and approval with real-time updates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>Professor Review</h4>
+                <p>Professors can efficiently review submissions, provide feedback, and approve or reject assignments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>File Management</h4>
+                <p>Upload and view assignment files with integrated document preview functionality.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>User Dashboards</h4>
+                <p>Personalized dashboards for students and professors with relevant statistics and quick actions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h4>Search & Filter</h4>
+                <p>Quickly find assignments and users with powerful search and filtering capabilities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-card">
+            <h5>100+</h5>
+            <p>Active Users</p>
+        </div>
+        <div class="stat-card">
+            <h5>500+</h5>
+            <p>Assignments Managed</p>
+        </div>
+        <div class="stat-card">
+            <h5>10+</h5>
+            <p>Departments</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Assignment Manager. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

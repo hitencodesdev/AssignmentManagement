@@ -18,7 +18,10 @@ app.use(cookie());
 app.set("view engine", "ejs");    
 
 connectDB();
-
+app.get('/',(req,res)=>
+{
+    res.render('landingPage')
+})
 app.use("/", authRoutes);
 app.use("/department", departmentRoutes);
 app.use("/users", userRoutes);
