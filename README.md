@@ -2,16 +2,16 @@
 A role-based Node.js web application for managing academic assignments between admins, professors, and students, with secure file uploads stored on Cloudinary.​
 
 # Table of Contents
-Overview
-Features
-Tech Stack
-Project Structure
-Environment Variables
-Getting Started
-User Roles
-Assignment & File Workflow
-Scripts
-License
+Overview   
+Features   
+Tech Stack   
+Project Structure      
+Environment Variables   
+Getting Started      
+User Roles   
+Assignment & File Workflow   
+Scripts   
+License   
 
 # Overview
 This project provides a centralized platform for departments, professors, and students to handle assignments digitally. It focuses on clear role separation, simple workflows for uploading and reviewing assignments, and reliable cloud storage for files.​
@@ -133,5 +133,6 @@ json
   "start": "nodemon index.js"
 }
 npm start – Runs the server in development mode with automatic restarts via nodemon.
+
 
 npm test – Executes Jest tests (and Supertest-based API tests where defined).
