@@ -61,7 +61,9 @@ exports.createUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
+        let u=await user.findById(req.params.id)
         await user.findByIdAndDelete(req.params.id);
+        await department.findOneAndUpdate({name:u.dept},{$inc:{users:-1}})
         res.redirect("/users/list");
     } catch (error) {
         res.send("error");
