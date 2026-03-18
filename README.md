@@ -169,7 +169,7 @@ cookie-parser for cookie handling
 File Upload & Storage:Multer for handling multipart/form-data   
 multer-storage-cloudinary and Cloudinary SDK for cloud uploads  
 Mailing: Nodemailer (for email-related features if configured)   
-Testing: Jest and Supertest  
+Testing: Jest
 
 # Project Structure  
 config/         # Configuration (database, Cloudinary, etc.)   

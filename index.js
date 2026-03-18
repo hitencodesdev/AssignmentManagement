@@ -32,4 +32,3 @@ app.use('/professor',professorRoutes)
 
 
 app.listen(process.env.PORT, () => console.log("Server started"));
-     
