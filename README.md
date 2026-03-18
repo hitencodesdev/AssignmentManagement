@@ -12,7 +12,7 @@ A role-based Node.js web application for managing academic assignments between A
 - Professors can review submissions, approve/reject, and download files
 - Files stored securely in Cloudinary (via multer-storage-cloudinary)
 - JWT-based authentication with bcrypt password hashing
-- Tests written with Jest + Supertest
+- Tests written with Jest 
 
 ---
 
@@ -26,7 +26,7 @@ A role-based Node.js web application for managing academic assignments between A
 - **File Uploads:** Multer + multer-storage-cloudinary
 - **Cloud Storage:** Cloudinary SDK
 - **Email (optional):** Nodemailer
-- **Testing:** Jest, Supertest
+- **Testing:** Jest
 
 ---
 
